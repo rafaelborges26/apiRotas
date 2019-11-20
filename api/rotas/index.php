@@ -127,7 +127,7 @@ $url = $_REQUEST;
             }
                 echo "Valor litro: ".$valorLitro. " Autonomia: ". $autonomia. " Valor km: ". $valorkm. " valor custo: ".$valorcusto ;
                 echo " Rotas: ". $rotas;
-
+                echo "teste";
             
         }
     
