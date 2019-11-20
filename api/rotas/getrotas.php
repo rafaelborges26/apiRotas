@@ -1,12 +1,14 @@
 <?php
 
+Rotas::atribuir();
 
-atribuir();
-
-function atribuir()
+Class Rotas
 {
-$url = $_GET;
-$cont = 0;
+    
+    function atribuir()
+    {
+        $url = $_GET;
+        $cont = 0;
             foreach ($url as $url => $value)
             {
                 //dar um replace para se for digitado com . e virar isso "2_5" replace em __ para ponto
@@ -26,16 +28,14 @@ $cont = 0;
             $litro = str_replace("_",".",$litro);
             $litro = str_replace(",",".",$litro);
             
-            return getRotas($ori,$dest,$autonomia,$litro);
+            Rotas::getRotas($ori,$dest,$autonomia,$litro);
 
             
-//            return json_encode()
-            //criar classe em outro arq e chamar aq para tratar os valores digitados
       
-  }
-    
+    }
 
-  
+
+
 
             function getRotas(string $origem, string $destino, string $autonomia, float $valorLitro)
             {
@@ -103,12 +103,12 @@ $cont = 0;
                     echo json_encode($json);
                   }
 
-        
+                       
 
         //jasonencode
 
-      
-
+     
+    }
         
 
 
