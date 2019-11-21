@@ -4,15 +4,12 @@ Rotas::atribuir();
 
 Class Rotas
 {
-    
     function atribuir()
     {
         $url = $_GET;
         $cont = 0;
             foreach ($url as $url => $value)
             {
-                //dar um replace para se for digitado com . e virar isso "2_5" replace em __ para ponto
-                //ajustar para se o valor tiver , colocar . ou seja outro replace
                 if($cont == 0)
                     $ori = $url;
                 else if($cont == 1)
@@ -23,19 +20,12 @@ Class Rotas
                 $litro = $url;
                 
               $cont++;
-            }
-            
+            }//validar parametros com , e .
             $litro = str_replace("_",".",$litro);
             $litro = str_replace(",",".",$litro);
             
-            Rotas::getRotas($ori,$dest,$autonomia,$litro);
-
-            
-      
+            Rotas::getRotas($ori,$dest,$autonomia,$litro);      
     }
-
-
-
 
             function getRotas(string $origem, string $destino, string $autonomia, float $valorLitro)
             {
@@ -46,7 +36,7 @@ Class Rotas
 
                 $qtdrotas = count($aOrigem);
 
-                //proprietes
+                //valores
                 $valorcusto = 0;
                 $valorkm = 0;
                 $valorKm2 = 0;
@@ -69,7 +59,6 @@ Class Rotas
                                     
                             }else
                             {
-
                                 //Destino mais complexo
                                 $rotas = $rotas.$aDestino[$i]." ";
                                 
@@ -77,40 +66,23 @@ Class Rotas
                                 {
                                     if($destino == $aDestino[$j])
                                     { 
-
                                         if($valorKm2 > $aKm[$j] || $valorKm2 == 0)
                                         {                                            
                                             $valorKm2 = $aKm[$j];   
                                         }
                                     }
-
-                                }
-                                                                
+                                }                                                   
                                 $valorkm = $valorkm + $valorKm2;
                                 $valorLitro = round($valorLitro,2);
                                 $valorcusto = $valorLitro / $autonomia * $valorkm;
                                 $rotas = $rotas.$destino." ";
                                 $i = $qtdrotas;
-                                
                             }
-    
                     } 
-                    
             }
-    
                     $json = array('rotas' => $rotas, 'custo' => $valorcusto);
-
                     echo json_encode($json);
                   }
-
-                       
-
-        //jasonencode
-
-     
     }
-        
-
-
 
         ?>        
