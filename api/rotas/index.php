@@ -1,6 +1,9 @@
 <?php
 
+open();
 
+function open()
+{
     if(isset($_GET['A']) || isset($_GET['B']) || isset($_GET['C']) || isset($_GET['D']))
     {
         require_once("getrotas.php");   
@@ -9,6 +12,6 @@
     {
         echo "Erro: sem parâmetro";
     }
-        
-    
+}
+
 ?>
